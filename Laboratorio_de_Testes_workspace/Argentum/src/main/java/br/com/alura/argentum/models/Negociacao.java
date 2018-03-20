@@ -9,7 +9,6 @@ public final class Negociacao {
 	private final LocalDateTime data;
 
 	public Negociacao(double preco, int quantidade, LocalDateTime data) {
-		super();
 		this.preco = preco;
 		this.quantidade = quantidade;
 		this.data = data;
@@ -25,6 +24,10 @@ public final class Negociacao {
 
 	public LocalDateTime getData() {
 		return data;
+	}
+
+	public double getVolume() {
+		return this.preco * this.quantidade;
 	}
 	
 }
