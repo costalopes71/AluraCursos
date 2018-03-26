@@ -11,6 +11,7 @@ public class CandlestickTest {
 	public void maximoNaoDeveSerMenorQueMinimo() {
 		
 		CandleBuilder builder = new CandleBuilder();
+		@SuppressWarnings("unused")
 		Candlestick candle = builder.comAbertura(10.0).comFechamento(30.0).comMaximo(15.0).comMinimo(25.0)
 				.comVolume(200.0).comData(LocalDateTime.now()).geraCandle();
 		
