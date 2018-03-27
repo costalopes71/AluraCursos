@@ -1,4 +1,4 @@
-package br.com.alura.argentum.modelo;
+package br.com.alura.argentum.models;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

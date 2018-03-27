@@ -14,6 +14,7 @@ import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 
 public class LocalDateTimeConverter implements Converter {
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public boolean canConvert(Class type) {
 		return type.isAssignableFrom(LocalDateTime.class);
