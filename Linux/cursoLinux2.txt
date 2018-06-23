@@ -1,0 +1,125 @@
+CURSO DE LINUX 2 - ALURA
+
+--- PROCESSOS ---
+
+- ps : exibe os programas que estao sendo executados (apenas dentro do terminal)
+- ps -e : exibe todos os processos que estao sendo executados no sisteMa
+* o numero a esquerda que é exibido eh o id do processo (ex: 14593)
+- kill numeroProcesso : pede ao programa para que ele seja encerrado
+- kill -9 numeroDoProcesso : nao da chance ao programa, mata o processo de qiualquer maneira
+- ps -ef : mostra varias outras informacoes sobre cada um dos processos que estao rodando (como o instante que foi iniciado, o local que o programa esta etc)
+- 
+
+---GREP---
+- ps -ef | grep firefox : grep eh um programa que filtra as linhas com a condicao que eu passar, neste caso passei a palavra firefox
+
+---KILL ALL e TOP ---
+- top : mostra a situacao dos processos, do processador, memoria, cpu e etc.
+Obs:
+matando 2 processos: kill -9 numeroProcesso numeroProcesso
+- killall firefox : matar todos os processos que tenham firefox
+Obs: posso usar o parametro -9 no killall tbm
+
+algumas opcoes com top:
+top -u usuario : mostra apenas os processos desse usuario
+top -p numeroProcesso : acompanha as informacoes de um processo especifico
+Obs: por padrao o comando top atualiza a tela com novas informacoes a cada 3 segundos. Este valor pode ser alterado pressionando d enquanto o top estiver rodando e inserindo o valor desejado e pressionando enter.
+
+--- Aula 4 --- (sh e chmod)
+
+-- SH -> serve para executar um script, posso criar meu script proprio e executar esse script usando o comando sh (bash)
+ex: sh meuscript
+
+-- CHMOD -> serve para dar permissoes a arquivos e diretorios
+Tipos de permissoes:
+   - w : permissao de escrita
+   - r : permissao de leitura
+   - x : permissao de execucao
+Ex: adicionar a permissao de execucao para qualquer usuario no arquivo exemplo
+chmod +x exemplo.txt
+Ex2: remover permissao de escrita para o mesmo arquivo
+chmod -w exemplo.txt
+
+--- AULA 5 --- updatedb e locate
+
+- updatedb : comando utilizado para atualizar a base do sistema que guarda o local dos arquivos
+- locate nomeDesejado : procura em todo o HD pelo nome digitado
+Ex: locate firefox
+
+--- AULA 6 --- witch e sudo
+
+- witch nomeDoCmdo : mostra o arquivo que vou executar se eu digitar esse cmdo
+ex: witch firefox -> o output sera /usr/bin/firefox
+tudo oq esta neste diretorio eh executado por padrao (como se fosse com variavel de ambiente)
+Para mover algo para esse diretorio eu tenho apenas o usuario root pode, pois apenas ele tem permissao de gravacao neste diretorio
+
+- sudo : executa comandos como o usuario root
+ex: sudo mv nomeDoArquivo /usr/bin -> move o arquivo escolhido para o diretorio usr/bin
+
+Uma vez movido para este diretorio, posso usar o witch nomeDoScript que sera localizado e para executa-lo agora basta escrever o nome do arquivo
+
+- passwd : muda a senha do usuario atual
+- sudo passwd : muda a senha do usuario root
+- su nomeDoUsuario : loga como o usuario escolhido
+Ex: su root -> loga com o usuario root
+- whoami : mostra qual o usuario estou usando
+
+--- AULA 7 --- adduser e chmod
+
+- adduser nomeDoUsuario -> cria um novo usuario para o sistema
+- su nomeDoUsuario -> troca de usuario
+Obs se for o usuario root, pode acessar qualquer outro usuario da maquina sem que seja necessario inserir a senha
+
+- chmod, permissoes e tipos (dono, grupo e outros)
+O chmod muda as permissoes
+  - r read
+  - w write
+  - x execute
+
+  - u user
+  - g group
+  - o others
+
+exs
+  - chmod g-rwx nomeDoDiretorio -> retira as permissoes de escrever, ler e executar do GRUPO do diretorio escolhido
+  - chmod o+rw nomeDoDiretorio -> adiciona as permissoes de ler e escrever aos outros usuarios
+  - chmod u-x nomeDoDiretorio -> retira a permissao de executar do usuario donO
+
+---AULA 8 --- variaveis de ambiente e Path
+para adicionar programas para o path, assim nao preciso mais escrever ./ ou mover o programa para /usr/bin
+
+- env : mostra as variaveis de ambiente
+- env | grep PATH -> apenas para ficar mais facil de ver onde esta o PATH
+Obs: os diretorios da variavel path sao separados por :
+- PATH=$PATH:/home/joaolopes/novodiretorio -> adiciona esse diretorio ao PATH, porem desta maneira ele nao matem o path, nao registra, funciona somente durante a sessao desse bash
+- gedit .bashrc -> esse arquivo eh carregado toda vez que abrimos o bash, portanto podemos adicionar o PATH editando esse arquivo e assim teremos o diretorio sempre no PATH. Basta editar o arquivo adicionando a seguinte linha:
+PATH=$PATH:/home/joaolopes/diretorio
+
+- wc nomeDoArquivo -> conta a quantidade de linhas, palavras e caracteres no arquivo (se for varios arquivos, por exemplo *.txt, da o total tbm)
+- wc -w nomeDoArquivo -> conta apenas as palavras
+- wc -l nomeDoArquivo -> conta a quantidade de linhas
+- wc -c nomeDoarquivo -> conta a quantidade de caracteres
+
+Outra variavel de ambiente é a PS1 ($PS1). Ela possui as informacoes que customizam o terminal. Para mudar o nome que aparece por exemplo no bash posso fazer:
+PS1="joao>"
+
+Aula 09 - Instalacao de programas APT
+
+- sudo apt-get udpdate --> atualizas os programas que estao disponiveis para instalcao
+- apt-cache search ftp --> busca um programa (no caso de servidor ftp)
+- apt-cache search vsftp --> busca o programa chamado vsftp
+- sudo apt-get install vsftpd --> instalar o programa que quero
+- sudO apt-get remove nomePrograma --> desinstala o programaa
+- sudo apt-get upgrade --> atualiza todo o sistema, atualizando as versoes dos pacotes que ja estao instalados
+- sudo apt-get remove vsftpd --> desinstalar o programa
+- apt-cache show programa -- mostra informacoes sobre um determinado programa
+Obs: para resolver dependencias posso usar:
+- sudo apt-get -f install
+
+---- AULA 10 ----- instalando novos programas (dpkg)
+
+- sudo dpkg -i nomeDoPacote.deb --> faco o download de um pacote .deb da internet e para instalar ele basta fazer este cmdo
+- sudo dpkg -r nomeDoPacote
+(o dpkg serve para instalar programas que nao estejam no repositorio central, se estiver no central posso o GET)
+
+----- AULA 11 -----
