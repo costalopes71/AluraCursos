@@ -1,0 +1,131 @@
+- pwd: para descobrir o diretório atual.
+- ls: para listar arquivos e diretórios, vimos as opções -l e -la, que listam além dos arquivos e diretórios ocultos, informações extras sobre cada um deles.
+- echo para imprimir mensagens e o operador > para modificar o destino da mensagem.
+- clear para limparmos o terminal. (atalho control + L)
+- man para consultar o manual sobre determinado comando.
+- setas para cima e para baixo para navegador no histórico de comandos do terminal.
+- whoami : retorna o nome do usuário que está sendo usado.
+- ls -a : lista todos arquivos e diretorios inclusive os ocultos
+- ls -l : lista todos os arquivos e diretorios com mais detalhes sobre cada
+- ls -la : os dois acima juntos
+- cat <nomeDoArquivo> : mostra o conteudo do arquivo
+- cat -n <nomeDoArquivo> : mostra o conteudo do arquivo + o numero da linha
+- rm <nomeArquivo> : remove o arquivo
+- rmdir <nomeDoDiretorio> : remove um diretorio VAZIO
+- rm -r <nomeDoDiretorio> : entra no diretorio e remove todos os arquivos dentro do diretorio inclusive ele proprio
+
+---- CORINGAS ----
+*  todos
+? um
+exemplo:
+
+cat nomeArquivo?.txt : exibe o conteudo de todos os arquivos .txt que tem o nome nomeArquivo e mais um caracter 
+cat nomeArquivo*.txt : exibe o conteudo de todos os arquivos .txt que tem o nome nomeArquivo e qualquer outra coisa a mais
+
+- cp nomeArquivo.txt novoNome.txt : copiar arquivos
+- mv nomeArquivo.txt nomeArquivo2.txt : renomeia o arquivo
+- mv nomeArquivo2.txt nomeDoDiretorio/ : move o arquivo para o diretorio que quero
+- mv nomeArquivo2.txt nomeDoDiretorio/novoNome3.txt : move o arquivo para o diretorio que quero e ja renomeia o arquivo
+- ls * : lista tudo oq ta dentro do diretorio e lista os diretorios.
+- ls bemvindo* : lista tudo oq tiver bemvindo e mais alguma coisa
+- cp -r nomeDoDiretorio nomeDoNovoDiretorio : copia o diretorio
+
+--- ZIP e UNZIP ---
+- zip nomeDoZip.zip <nomeDoArquivo> : zipa uma arquivo
+- zip -r nomeDoZip.zip <nomeDoDiretorio> : zipa um diretorio
+- unzip <nomeDoZip.zip>
+- unzip -l <nomeDoZip.zip> : lista os arquivos que estao dentro do zip
+
+parametros para diminuir a verborragia
+- unzip -q (-q eh quiet)
+ex: 
+- zip -rq nomeDoZip.zip <nomeDoDiretorio> 
+
+
+--- TAR e TAR GZ --- (maneira de compactar no linux)
+* o TAR apenas empacota os arquivos.
+* para compactar ele usa um compactador, por exemplo o gzip ou o bzip2
+* por padrao ja é recursivo
+- tar -cz workspace > work.tar.gz
+- tar -xz < work.tar.gz : descompacta o arquivo tar.gz
+- tar -czf nomeDoTar nomeDoDiretorio : compacta sem a necessidade de indicar
+- tar -xzf nomeDoTar : descompacta sem a necessidade de indicar
+
+--usando bzip2 -- demora mais mas deixa o arquivo menor!!
+- tar -cjf nomeDoTar.tar.bz2 nomeDoDiretorio
+
+-c = create
+-z = zipar
+-v = aciona o verbose para mostrar mais informacoes
+-q = tira o verbose
+
+--- TOUCH e DATE ---
+* uso touch para apenas "tocar" no meu arquivo, mudando assim a data da ultima modificacao para a data atual do toque
+* date para ver a data atual do sistema
+- touch nomeDoArquivo.txt
+- date
+
+---FORMATACAO DATE---
+podemos formatar a data exibida usando parametros, para saber quais parametros existem usar o help (date --help)
+ex:
+$ date "+%d/%m/%Y %H:%M %A"
+23/01/2016 11:20 Quinta
+
+--- HELP ---
+* forma mais resumida, utilizando o parâmetro --help suportado por alguns comandos,
+ex: date --help
+
+* quando executado sem parâmetros, retorna uma lista com todos os demais comandos internos do shell bash. Quando executado com parâmetro, o comando help retorna a sintaxe de utilização e uma descrição do comando interno que estamos interessados.
+exs: 
+- help
+- help pwd
+
+---HEAD TAIL E LESS---
+* serve para ver algumas linhas apenas do arquivo
+- head nomeDoArquivo.extensao : traz as 10 primeiras linhas
+- head -n 3 nomeDoArquivo.extensao : traz as 3 primeiras linhas (posso passar qtas eu quero)
+- tail nomeDoArquivo.extensao : traz as ultimas 10 linhas
+- tails -n 3 nomeDoArquivo.extensao : traz as ultimas 3 linhas do arquivo (posso passar qtas eu quero)
+- less nomeDoArquivo.extensao : abre o arquivo no terminal e posso usar a seta para navegar no arquivo
+
+
+Aula 5 do curso de Linux 1
+
+---VI---
+- vi nomeDoAquivo.extensao : abre o editor VI no arquivo que escolhi ou um novo
+- setas : navegam no documento
+- i : inseri texto antes do caracter que estou
+- ESC : sai do modo de edicao ou navegacao e volta para o modo navegacao ou edicao
+- : : abre o comando
+- :w : salva o arquivo
+- :q : sai
+- :wq : salva e sai
+- a : inseri texto na posicao seguinte do caracter que estou
+- x : deleta um caracter
+- (numero) x : quantidade de caracteres que quero apagar
+- dd : apaga a linha inteira
+- :q! : sai do arquivo sem salvar as alteracoes
+- (numero) dd : quantidade de linhas que quero apagar
+- A : insere texto no final da linha
+
+-Navegacao no VI-
+- $ : vai para o final da linha final
+- 0 : vai para o primeiro caracter da linha
+- G : vai para a ultima linha
+- numero + G : vai para a linha que escolhi
+- 1 + G : vai para a primeira linha do arquivo
+ou
+- gg : vai para a primeira linha do arquivo
+- ex: 1 + G : vai para a primeira linha
+- / + padrao de busca : busca uma palavra no arquivo
+- n : vai para a proxima ocorrencia da busca
+- N : vai para a ocorrencia anterior da buscA
+
+---COPY PASTE---
+- yy : copia uma linha
+- p : cola oq foi copiado
+- numero + yy : copia a quantidade de linhas que eu defini
+- numero + p : copia a quantidade de vezes que eu defini
+
+
+
